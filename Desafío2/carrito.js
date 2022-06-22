@@ -13,10 +13,10 @@ const  Contenedor  =  require ( './app.js' )
 let  contenedor =  new  Contenedor ( 'productos.txt' ) ;
 
  carrito  const =  asincrono () => {
-    consola _ log ( '------leemos el archivo por si tenemos productos de antes' )
+    consola _ log ( '------leer el archivo por si tenemos productos de antes' )
     consola _ log ( aguardar  contenedor . getAll ( ) ) ;  
 
-    consola _ log ( '------agregamos productos' )
+    consola _ log ( '------agregar productos' )
     
     const  obj1 =  { título : 'Crema Nutritiva con Liposomas' , precio : 1200 , thumbnail: 'https://ceyc.com.ar/wp-content/uploads/EXEL_862-Gel-Cream-con-Ceramidas-50-ml.jpg' }
     consola _ log ( aguardar  contenedor . guardar ( obj1 ) ) ;

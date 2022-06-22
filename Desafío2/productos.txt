@@ -20,10 +20,4 @@
         id: 3
     }
     
-    {
-        title: 'Aceite para masajes con yerba mate',
-        price: 2.000,
-        thumbnail: 'https://ceyc.com.ar/wp-content/uploads/2018/04/p_2_2_1_221-Aceite-para-masajes-relajantes-2.jpg',
-        id: 4
-    }
 ]
