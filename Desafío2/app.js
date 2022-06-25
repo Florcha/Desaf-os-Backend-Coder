@@ -1,18 +1,18 @@
 const fs = require('fs');
 
 class Contenedor {
-  constructor(nombreArchivo) {
-    this.nombreArchivo = nombreArchivo;
+  constructor(archivoApp) {
+    this.archivoApp = archivoApp;
   }
 
   getAll = async () => {
     try {
-      const contenido = await fs.promises.readFile(this.nombreArchivo, 'utf-8');
+      const contenido = await fs.promises.readFile(this.archivoApp, 'utf-8');
       return JSON.parse(contenido);
     } catch (error) {
       console.error(error);
-      await fs.promises.writeFile(this.nombreArchivo, JSON.stringify([], null, 2));
-      const contenido = await fs.promises.readFile(this.nombreArchivo, 'utf-8');
+      await fs.promises.writeFile(this.archivoApp, JSON.stringify([], null, 2));
+      const contenido = await fs.promises.readFile(this.archivoApp, 'utf-8');
       return JSON.parse(contenido);
     }
   }
@@ -21,7 +21,7 @@ class Contenedor {
     try {
       const arrObjetos = await this.getAll();
       arrObjetos.push({ ...objeto, id: arrObjetos.length + 1 });
-      await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(arrObjetos, null, 2));
+      await fs.promises.writeFile(this.archivoApp, JSON.stringify(arrObjetos, null, 2));
       return objeto.identificación;
     } catch (error) {
       console.error(error);
@@ -47,7 +47,7 @@ class Contenedor {
           arrObjetos.splice(i, 1);
         }
       }
-      await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(arrObjetos, null, 2))
+      await fs.promises.writeFile(this.archivoApp, JSON.stringify(arrObjetos, null, 2))
     } catch (error) {
       console.error(error);
       throw new Error('Error al borrar el objeto por Id');
@@ -56,7 +56,7 @@ class Contenedor {
 
   deleteAll = async () => {
     try {
-      await fs.promises.writeFile(this.nombreArchivo, JSON.stringify([], null, 2))
+      await fs.promises.writeFile(this.archivoApp, JSON.stringify([], null, 2))
     } catch (error) {
       console.error(error);
       throw new Error('Error al borrar todos los objetos');
