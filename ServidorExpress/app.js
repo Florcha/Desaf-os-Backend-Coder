@@ -1,37 +1,28 @@
 //Importa el paquete express
-const express = require("express");
-const path = require("path");
-const Contenedor = require('../Desafío2/app.js');
+import bodyParser from 'body-parser';
+import express from 'express';
+import routes from './routes.js';
 
 //Invocar a la funcion express
-const app = express();
+var app = express()
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 //Almacena el puerto en el que va a correr
-const port = 8080
+const port = 8080;
 
-//Cuando llegue una request a localhost:8080
-app.get("/", (req, res) => {
-    res.send("Entra solo a la URL!")
-});
+app.use('/', routes);
 
-//Cuando alguien quiere entrar a localhost:8080/productos
-app.get('/productos', async (req, res) => {
-    let Contenedor = new
-Contenedor('../Desafío2/productos.txt');
-    const productos = await contenedor .getAll();
-    res.send({ productos })
-});
-
-//Cuando alguien quiere entrar a localhost:8080/productoRandom
-app.get('/productoRandom', async (req, res) => {
-    let contenedor = new
-Contenedor('../Desafío/productos,txt');
-    const productos = await contenedor.getAll();
-    var producto = productos[Math.floor(Math.random() * productos.length)];
-    res.send({ producto })
-});
+// //Cuando llegue una request a localhost:8080
+// app.get('/', (_req, res) => {
+//     res.send('Entra solo a la URL!')
+// });
 
 //Correr la app express, en localhost en el puerto 8080
 app.listen(port, () => {
-    console.log("server runing on port", 8080);
+  console.log('server runing on port', 8080);
 });
